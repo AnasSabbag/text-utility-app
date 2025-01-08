@@ -13,6 +13,7 @@ import {
   Route
 } from "react-router-dom";
 
+import AlertState from './context/alerts/AlertState';
 
 
 function App() {
@@ -56,17 +57,19 @@ function App() {
   
   return (
     <>
-    <Router>
-    <Navbar title = "TextUtil2" mode ={mode} aboutText={"About"} toggleMode ={toggleMode}/>
-    <Alert alert = {alert} />
-    <div className="container my-3">
-        <Routes>
-          <Route exact  path="/about" element ={<About mode ={mode} />} />
-          <Route exact path="/" element = {<TextForm showAlert={showAlert} heading = "Enter The Text to analyze" mode ={mode} />} />  
-        </Routes>
+    <AlertState>
+        <Router>
+        <Navbar title = "TextUtil2" mode ={mode} aboutText={"About"} toggleMode ={toggleMode}/>
+        <Alert alert = {alert} />
+        <div className="container my-3">
+            <Routes>
+              <Route exact  path="/about" element ={<About mode ={mode} />} />
+              <Route exact path="/" element = {<TextForm showAlert={showAlert} heading = "Enter The Text to analyze" mode ={mode} />} />  
+            </Routes>
 
-    </div>
-    </Router>
+        </div>
+        </Router>
+    </AlertState>
     </>
   );
 } 

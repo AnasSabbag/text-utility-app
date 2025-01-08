@@ -1,6 +1,9 @@
-import React from 'react'
 
-export default function About(props) {
+import React,{ useContext,useState } from 'react'
+import alertContext from '../context/alerts/alertContext'
+
+
+const  About = (props)=> {
     
     
 
@@ -8,12 +11,22 @@ export default function About(props) {
     color: props.mode==='dark'?'white':'#042743',
     backgroundColor : props.mode==='dark'?'#203d67':'white'
   }
+  const context = useContext(alertContext);
+  const {displayAlert} = context;
+  console.log("context : ",context);
+  const [alrt, setalrt] = useState({type:'success',msg:"this is alert"})
+  const showAlertHandle = ()=>{
+    console.log("alert data: ",alrt)
+    displayAlert(alrt);
+
+  }
 
 //   color :#42679e #203d67
 //  backgroundColor : props.mode==='dark'?'#42679e':'white'
 return (
-    <div className="container" >
-        <h1 style ={{color: props.mode==='dark'?'white':'#042743'}} >About Us</h1>
+    <>
+        <div className="container" >
+        <h1 style ={{color: props.mode==='dark'?'white':'#042743'}} >About Us </h1>
         <div className="accordion" id="accordionPanelsStayOpenExample" >
             <div className="accordion-item" style={{backgroundColor : props.mode==='dark'?'#42679e':'white'}}>
                 <h2 className="accordion-header">
@@ -52,8 +65,13 @@ return (
                 </div>
             </div>
         </div>
-        
-    </div>
+        </div>
+            <div className="container">
+                <button type="button" className="btn btn-primary" onClick={showAlertHandle} >Show Alert</button>
+            </div>
+    </>
+    
   )
-}
 
+}
+export default About;
