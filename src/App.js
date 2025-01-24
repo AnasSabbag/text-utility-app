@@ -17,6 +17,8 @@ import AlertState from './context/alerts/AlertState';
 
 
 function App() {
+  const apiUrl = process.env.REACT_APP_API_URL
+  console.log("url at : "+apiUrl);
   const [mode, setmode] = useState('light')
   const [alert, setAlert] = useState(null)
 

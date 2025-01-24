@@ -14,7 +14,9 @@ const  About = (props)=> {
   const context = useContext(alertContext);
   const {displayAlert} = context;
   console.log("context : ",context);
+  // eslint-disable-next-line
   const [alrt, setalrt] = useState({type:'success',msg:"this is alert"})
+
   const showAlertHandle = ()=>{
     console.log("alert data: ",alrt)
     displayAlert(alrt);
