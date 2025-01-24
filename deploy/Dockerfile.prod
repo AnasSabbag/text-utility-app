@@ -1,0 +1,25 @@
+# Step 1: Build the application
+FROM node:18-slim AS builder
+
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json ./
+
+# Install dependencies (including devDependencies for build process)
+RUN npm install --legacy-peer-deps
+
+# Copy source code
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# Step 2: Serve with Nginx
+FROM nginx:alpine
+
+COPY --from=builder /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
