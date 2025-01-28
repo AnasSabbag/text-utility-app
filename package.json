@@ -1,4 +1,5 @@
 {
+  "homepage": "https://AnasSabbag.github.io/text-utility-app",
   "name": "text-utility-app",
   "version": "0.1.0",
   "private": true,
@@ -16,6 +17,8 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
